@@ -7,6 +7,7 @@
 ## 2) Choose and adapt a paradigm
 - Do a focused literature review first; adapt vetted iEEG-compatible tasks when possible.[^axmacher2023]
 - Prefer paradigms that exploit iEEG strengths (timing precision, single-trial resolution, local signals).[^stolk2018]
+- [PsychoPy](https://www.psychopy.org/).
 
 ## 3) Plan trials, duration, and feasibility before coding
 - Simulate total run time:
@@ -35,12 +36,47 @@
 - Consider jittered ITIs to reduce temporal predictability and anticipatory activity.
 - Match control conditions on difficulty, sensory load, and motor demands when possible.
 
+### Example (adapted): jittered ITI
+```python
+import random
+import numpy as np
+from psychopy import core
+
+iti_values = np.arange(0.8, 1.2, 0.001)
+
+random.shuffle(iti_values)
+iti_this_trial = float(iti_values[0])
+
+fixation.draw(win)
+win.flip()
+core.wait(iti_this_trial, iti_this_trial)
+trial_log_kwargs["iti_value"] = iti_this_trial
+```
+
 ## 6) Build timing and synchronization correctly
 - Use a photodiode marker for visual onset timing.
 - Size the photodiode rectangle large enough for stable detection.
 - Present photodiode marker at each stimulus onset.
 - Do not assume software event timestamps equal on-screen onset; account for display latency and hardware/software jitter.[^stolk2018][^fieldtriphumanecog]
 - Do dry runs to characterize latency and jitter before patient recording.
+
+### Example (adapted): photodiode rectangle at stimulus onset
+```python
+from psychopy import visual
+
+photodiode_rect = visual.ShapeStim(
+    win,
+    fillColor="black",
+    vertices=[[165, -90], [-165, -90], [-165, 90], [165, 90]],
+    closeShape=True,
+    pos=[-win.size[0] / 2 + 165, -win.size[1] / 2 + 90],
+)
+
+stimulus.draw(win)
+if ieeg_mode:
+    photodiode_rect.draw(win)
+win.flip()
+```
 
 ## 7) Implement robust logging and documentation
 - Log rich behavioral metadata:
