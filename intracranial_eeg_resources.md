@@ -1,4 +1,22 @@
-# iEEG Resources
+### iEEG Resources
+
+## Table of contents
+
+- [General Neurophysiology Analysis Resources](#general-neurophysiology-analysis-resources)
+- [Anatomy and localization](#anatomy-and-localization)
+- [Signal processing](#signal-processing)
+- [Connectivity and causality](#connectivity-and-causality)
+- [Statistics](#statistics)
+- [Single unit analyses](#single-unit-analyses)
+- [Hyperscanning](#hyperscanning)
+- [AI tools](#ai-tools)
+- [Intracranial task design](#intracranial-task-design)
+  - [Start with a precise scientific question](#start-with-a-precise-scientific-question)
+  - [Plan trial counts, exclusions, and feasibility early](#plan-trial-counts-exclusions-and-feasibility-early)
+  - [Design trial structure and timing with synchronization in mind](#design-trial-structure-and-timing-with-synchronization-in-mind)
+  - [Pilot and iterate task design/timing/instructions with healthy controls before running in patients](#pilot-and-iterate-task-designtiminginstructions-with-healthy-controls-before-running-in-patients)
+  - [Analysis guardrails for task-based iEEG](#analysis-guardrails-for-task-based-ieeg)
+  - [Operational constraints in clinical environments](#operational-constraints-in-clinical-environments)
 
 ## Intracranial EEG research guides
 
@@ -112,3 +130,67 @@ Wang, J., Meng, F., Xu, C., Zhang, Y., Liang, K., Han, C., Gao, Y., Yu, X., Li, 
 - [ChatGPT](https://chat.openai.com/), [Claude](https://www.anthropic.com/index/claude)
 - [Notebook LM](https://notebooklm.google.com/)
 - [Consensus](https://consensus.app/)
+
+# Intracranial task design
+
+## Start with a precise scientific question
+  - Define a priori hypotheses before inspecting neural data.
+  - Sketch planned figures and analyses before implementation.
+  - **Relevant papers/resources**
+    - [Mercier et al. (2022) - Advances in human intracranial electroencephalography research, guidelines and good practices](https://doi.org/10.1016/j.neuroimage.2022.119438)
+    - [Axmacher (Ed.) (2023) - Intracranial EEG: A guide for cognitive neuroscientists](https://doi.org/10.1007/978-3-031-20910-9)
+
+##  Plan trial counts, exclusions, and feasibility early
+  - Simulate total task duration: `(trial duration + ITI) x number of trials`.
+  - Keep total task duration patient-friendly (~30m) and split into short runs/blocks so interrupted sessions still yield analyzable data.
+  - Estimate trial count needs by analysis type:
+  - Robust effects (e.g., strong HFA changes): fewer trials may work.
+  - Connectivity analyses: more trials required.
+  - Complex computational designs: more trials required.
+  - Consider simulating task behavior with computational models (e.g. simple reinforcement learning/ Wednesday lose shift models) to get estimates of trial counts per condition
+  - Plan for participant/channel exclusion (e.g., seizures, poor performance, interictal activity).
+  - Increased trial counts maybe needed for connectivity, computational, and trial-by-trial modeling.
+  - **Relevant papers/resources**
+    - [Bastos & Schoffelen (2016) - Functional connectivity analysis methods and interpretational pitfalls](https://doi.org/10.3389/fnsys.2015.00175)
+    - [Lv & Wang (2023) - How can iEEG data be analyzed via multi-level models?](https://doi.org/10.1007/978-3-031-20910-9_36)
+    - [Gelman & Hill (2007) - Data Analysis Using Regression and Multilevel/Hierarchical Models](https://doi.org/10.1017/CBO9780511790942)
+
+## Design trial structure and timing with synchronization in mind
+  - Choose blocked vs. interleaved/event-related structure based on the scientific question (prefer interleaved/event-related designs when possible)
+  - Use randomization/counterbalancing and consider jittered ITIs when appropriate.
+  - Use photodiode markers for precise visual-onset timing and run latency/jitter dry runs.
+  - Log detailed behavioral events (reaction times, button presses, task events).
+  - **Relevant papers/resources**
+    - [Stolk et al. (2018) - Integrated analysis of anatomical and electrophysiological human intracranial data](https://doi.org/10.1038/s41596-018-0009-6)
+    - [FieldTrip Tutorial - Analysis of human ECoG and sEEG recordings](https://www.fieldtriptoolbox.org/tutorial/intracranial/human_ecog/)
+
+ ## Pilot and iterate task design/timing/instructions with healthy controls before running in patients
+  - I've found that pilot data from healthy controls can be very informative when designing tasks for intracranial EEG patients, despite differences in medication status, discomfort, fatigue, et cetera. My general impression has been that around one-third of intracranial patients perform on par with healthy controls, one-third perform a little bit worse, and one-third perform a good bit worse than healthy controls. This depends, however, on the initial exclusion criterion you are using to recruit patients, i.e. whether you are including patients with significant lesions or with prior resections. 
+  - It is much easier to collect data with healthy participants. So try to do as much piloting and iteration as you can with this population before moving on to patients.
+  - Analyze behavior
+    - Do you have enough trials per condition?  
+    - Is the task taking too long?  
+    - Is it too boring/difficult?  
+    - Estimate fit of relevant computational models  
+  - Debrief subjects: 
+    - Confusing instructions?
+    - Was it too boring/difficult?
+    - Were unexpected strategies used?
+
+## Analysis guardrails for task-based iEEG
+  - Avoid circular analyses (electrode/frequency/ROI/time-window selection on the same test data).
+  - Distinguish periodic oscillations from aperiodic/evoked activity when interpreting spectral effects.
+  - Use principled multiple-comparison and modeling strategies (e.g. mixed effects modelling).
+  - **Relevant papers/resources**
+    - [Donoghue et al. (2021) - Methodological considerations for studying neural oscillations](https://doi.org/10.1111/ejn.15361)
+    - [Gelman, Hill, & Yajima (2012) - Why we (usually) don't have to worry about multiple comparisons](https://doi.org/10.1080/19345747.2011.618213)
+    - [SpecParam (formerly FOOOF)](https://github.com/fooof-tools/fooof)
+    - [Bycycle](https://bycycle-tools.github.io/bycycle/)
+
+## Operational constraints in clinical environments
+  - Prioritize patient comfort and pause/stop whenever needed
+  - Minimize interference with clinical workflow and emergency access.
+  - Use short, interruptible blocks so partial sessions still provide analyzable data.
+  - **Relevant papers/resources**
+    - [Mercier et al. (2022) - Advances in human intracranial electroencephalography research, guidelines and good practices](https://doi.org/10.1016/j.neuroimage.2022.119438)
+    - [Axmacher (Ed.) (2023) - Intracranial EEG: A guide for cognitive neuroscientists](https://doi.org/10.1007/978-3-031-20910-9)
