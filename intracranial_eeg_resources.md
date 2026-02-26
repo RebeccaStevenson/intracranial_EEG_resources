@@ -1,18 +1,6 @@
----
-title: "iEEG Resources"
-format: 
-  html:
-    output-file: "iEEG_resources.html"
-    embed-resources: true
-  pdf:
-    pdf-engine: xelatex
-    output-file: "iEEG_resources.pdf"
-toc: true
-toc-depth: 4
----
+# iEEG Resources
 
-
-# Intracranial EEG research guides
+## Intracranial EEG research guides
 
 Mercier, M. R., et al. (2022). **Advances in human intracranial electroencephalography research, guidelines and good practices.** NeuroImage, 260, 119438. [https://doi.org/10.1016/j.neuroimage.2022.119438](https://doi.org/10.1016/j.neuroimage.2022.119438)
 
@@ -22,17 +10,17 @@ Axmacher, N. (Ed.). (2023). **Intracranial EEG: A guide for cognitive neuroscien
 # General Neurophysiology Analysis Resources
 
 - **Analyzing Neural Time Series Data: Theory and Practice** - Mike X. Cohen  
-   - [Textbook](https://www.amazon.com/Analyzing-Neural-Time-Data-Practice/dp/0262019876) (available on Amazon/MIT Press)  
-     - Covers pre-processing, signal processing, connectivity, analyses, and statistics (permutation testing)
-     - [GitHub repository](https://github.com/mikexcohen/AnalyzingNeuralTimeSeries) containing MATLAB code and example scripts accompanying the textbook  
-  - Video lectures (playlists)  
-       - [Static signal processing](https://www.youtube.com/watch?v=fYtVHhk3xJ0&list=PLn0OLiymPak2jxGCbWrcgmXUtt9Lbjj_A)  
-       - [Time series analyses](https://www.youtube.com/watch?v=7ahrcB5HL0k&list=PLn0OLiymPak2BYu--bR0ADNBJsC4kuRWs)  
-       - [Synchronization](https://www.youtube.com/watch?v=ardi0hO6lOU&list=PLn0OLiymPak1wp4wMQ7tbYrtyFUatMVJs) 
-       - [Permutation-based statistics](https://www.youtube.com/watch?v=7W11BOlM02I&list=PLn0OLiymPak1Ch2ce47MqwpIw0x3m6iZ7) 
+  - [Textbook](https://www.amazon.com/Analyzing-Neural-Time-Data-Practice/dp/0262019876) (available on Amazon/MIT Press)
+    - Covers pre-processing, signal processing, connectivity, analyses, and statistics (permutation testing)
+    - [GitHub repository](https://github.com/mikexcohen/AnalyzingNeuralTimeSeries) containing MATLAB code and example scripts accompanying the textbook
+  - Video lectures (playlists)
+    - [Static signal processing](https://www.youtube.com/watch?v=fYtVHhk3xJ0&list=PLn0OLiymPak2jxGCbWrcgmXUtt9Lbjj_A)
+    - [Time series analyses](https://www.youtube.com/watch?v=7ahrcB5HL0k&list=PLn0OLiymPak2BYu--bR0ADNBJsC4kuRWs)
+    - [Synchronization](https://www.youtube.com/watch?v=ardi0hO6lOU&list=PLn0OLiymPak1wp4wMQ7tbYrtyFUatMVJs)
+    - [Permutation-based statistics](https://www.youtube.com/watch?v=7W11BOlM02I&list=PLn0OLiymPak1Ch2ce47MqwpIw0x3m6iZ7)
 - **FieldTrip Toolbox for Neurophysiological Data Analysis**  
   - [FieldTrip Tutorials](https://www.fieldtriptoolbox.org/tutorial/)  
-      - [Human ECoG tutorial](https://www.fieldtriptoolbox.org/tutorial/intracranial/human_ecog/)
+    - [Human ECoG tutorial](https://www.fieldtriptoolbox.org/tutorial/intracranial/human_ecog/)
   - [FieldTrip Discussion List](https://www.fieldtriptoolbox.org/discussion_list/)  
   
 - **MNE-Python Toolbox**
